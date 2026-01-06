@@ -1,6 +1,6 @@
 # Smart Rental System
 
-A full-stack rental management system with Spring Boot backend and React frontend.
+A full-stack rental management system with Spring Boot backend and React frontend
 
 ## Features
 

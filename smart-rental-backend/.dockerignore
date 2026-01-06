@@ -1,0 +1,13 @@
+target/
+.git/
+.gitignore
+README.md
+.env
+.env.example
+.classpath
+.project
+.vscode/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

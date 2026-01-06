@@ -1,0 +1,270 @@
+/* ---------- PAGE ---------- */
+.complaints-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0;                 /* ✅ FIX: remove centering */
+  padding-top: 16px;
+}
+
+
+.complaints-title {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.complaints-subtitle {
+  color: #6b7280;
+  margin-bottom: 36px;
+  font-size: 15px;
+}
+
+/* ---------- LIST ---------- */
+.complaint-list {
+  display: grid;
+  gap: 24px;
+}
+
+/* ---------- CARD ---------- */
+.complaint-card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- HEADER ---------- */
+.complaint-card h3 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.complaint-message {
+  color: #374151;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ---------- STATUS + BUTTON ---------- */
+.complaint-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+/* ---------- STATUS ---------- */
+.status {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.Open {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status.Resolved {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ---------- BUTTON ---------- */
+.status-btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+  font-size: 13px;
+  transition: background 0.2s ease;
+}
+
+.status-btn:hover {
+  background: #1e40af;
+}
+
+/* ---------- FOOTER ---------- */
+.complaint-footer {
+  margin-top: 60px;
+  padding: 30px 34px;
+  background: #f1f5f9;
+  border-left: 6px solid #3b82f6;
+  border-radius: 14px;
+}
+
+.complaint-footer h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.complaint-footer p {
+  color: #374151;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .complaints-container {
+    padding: 20px;
+  }
+
+  .complaint-card {
+    padding: 18px;
+  }
+}
+/* ---------- TOP SECTION (ROOM + FLOOR + STATUS) ---------- */
+.complaint-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.complaint-floor {
+  font-size: 14px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+/* ---------- MESSAGE SPACING ---------- */
+.complaint-message {
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+/* ---------- ACTION AREA (BUTTON ONLY) ---------- */
+.complaint-actions {
+  margin-top: 12px;          /* more breathing room */
+}
+
+/* ---------- BUTTON IMPROVEMENT ---------- */
+.status-btn {
+  padding: 8px 16px;         /* slightly bigger */
+  border-radius: 10px;
+}
+
+/* ---------- CARD VISUAL SEPARATION ---------- */
+.complaint-card {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.complaint-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.1);
+}
+/* ---------- LIGHT SPACING TWEAK ---------- */
+
+.complaint-card {
+  padding: 20px 22px;      /* slightly tighter */
+  gap: 12px;
+}
+
+.complaint-message {
+  margin-bottom: 8px;
+}
+
+.complaint-actions {
+  margin-top: 6px;
+}
+
+.complaint-top {
+  margin-bottom: 2px;
+}
+/* ---------- DISABLED BUTTON ---------- */
+.status-btn:disabled {
+  background: #9ca3af;   /* gray */
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.complaint-form {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.complaint-form input,
+.complaint-form textarea {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.complaint-form button {
+  align-self: flex-start;
+  background: #2563eb;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.resolve-btn {
+  background: #16a34a;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.complaint-card {
+  position: relative; /* REQUIRED for top-right badge */
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* STATUS BADGE */
+.complaint-status {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* STATUS COLORS */
+.complaint-status.pending {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.complaint-status.resolved {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.complaint-room {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.complaint-date {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+.complaint-user {
+  font-size: 14px;
+  color: #374151;
+  margin-top: 4px;
+  font-weight: 500;
+}

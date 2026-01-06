@@ -1,0 +1,32 @@
+/* ---------- RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* ---------- BODY ---------- */
+body {
+  margin: 0;
+  background-color: #f4f6fb; /* professional soft gray-blue */
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+
+/* ---------- LINKS ---------- */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- PAGE BACKDROP ---------- */
+.page-bg {
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #f1f5f9 100%
+  );
+  min-height: calc(100vh - 64px);
+  padding-bottom: 40px;
+}

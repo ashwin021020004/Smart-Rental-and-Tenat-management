@@ -19,6 +19,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build JAR with Maven
+        working-directory: smart-rental-backend
         run: mvn clean package -DskipTests
 
       - name: Set up Docker
@@ -35,6 +36,7 @@ jobs:
         run: echo "IMAGE_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build Docker Image
+        working-directory: smart-rental-backend
         run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:${{ env.IMAGE_TAG }} .
 
       - name: Push Docker Image to DockerHub

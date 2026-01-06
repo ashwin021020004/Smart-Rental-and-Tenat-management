@@ -25,7 +25,7 @@ jobs:
           distribution: 'temurin'
 
       # --------------------------------------------------
-      # 3. Set up Maven (stable version)
+      # 3. Set up Maven (stable & modern)
       # --------------------------------------------------
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
@@ -44,11 +44,16 @@ jobs:
             ${{ runner.os }}-m2
 
       # --------------------------------------------------
-      # 5. Build Spring Boot JAR (IPv4 fix for Maven 403)
+      # 5. Build Spring Boot JAR
+      #    (IPv4 + skip tests completely)
       # --------------------------------------------------
       - name: Build JAR with Maven
         working-directory: smart-rental-backend
-        run: mvn -B -Djava.net.preferIPv4Stack=true clean package -DskipTests
+        run: |
+          mvn -B \
+            -Djava.net.preferIPv4Stack=true \
+            -Dmaven.test.skip=true \
+            clean package
 
       # --------------------------------------------------
       # 6. Set up Docker Buildx
@@ -66,13 +71,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       # --------------------------------------------------
-      # 8. Set Docker Image Tag
+      # 8. Generate image tag (commit SHA)
       # --------------------------------------------------
       - name: Set IMAGE_TAG
         run: echo "IMAGE_TAG=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       # --------------------------------------------------
-      # 9. Build Docker Image
+      # 9. Build Docker image
       # --------------------------------------------------
       - name: Build Docker Image
         working-directory: smart-rental-backend
@@ -82,19 +87,24 @@ jobs:
             .
 
       # --------------------------------------------------
-      # 10. Push Docker Image (commit tag)
+      # 10. Push image (commit tag)
       # --------------------------------------------------
       - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:${{ env.IMAGE_TAG }}
+        run: |
+          docker push \
+            ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:${{ env.IMAGE_TAG }}
 
       # --------------------------------------------------
       # 11. Tag as latest & push
       # --------------------------------------------------
-      - name: Push Latest Tag
+      - name: Push Latest Image
         run: |
-          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:${{ env.IMAGE_TAG }} \
-                     ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:latest
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:latest
+          docker tag \
+            ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:${{ env.IMAGE_TAG }} \
+            ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:latest
+
+          docker push \
+            ${{ secrets.DOCKERHUB_USERNAME }}/smart-rental-backend:latest
 
       # --------------------------------------------------
       # 12. Trigger Render Deployment

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import api from '../services/api';
+import { login as apiLogin, register as apiRegister } from '../services/api';
 
 const AuthContext = createContext();
 
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await api.post('/auth/login', { username, password });
+      const response = await apiLogin({ username, password });
       const userData = response.data;
       // Ensure clean user data
       const cleanUserData = {
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, password) => {
     try {
-      const response = await api.post('/auth/register', { username, password });
+      const response = await apiRegister({ username, password });
       return { success: true, message: response.data.message };
     } catch (error) {
       const errorData = error.response?.data;

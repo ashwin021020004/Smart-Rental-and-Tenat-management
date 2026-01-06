@@ -22,6 +22,10 @@ export const getComplaintsByUser = (username) => API.get(`/complaints/user/${use
 export const addComplaint = (data) => API.post("/complaints", data);
 export const updateComplaintStatus = (id, status) => API.put(`/complaints/${id}/status`, { status });
 
+// -------- AUTH --------
+export const login = (data) => API.post("/auth/login", data);
+export const register = (data) => API.post("/auth/register", data);
+
 // -------- PASSWORD RESET --------
 export const forgotPassword = (username) => API.post("/auth/forgot-password", { username });
 export const resetPassword = (data) => API.post("/auth/reset-password", data);
